@@ -1,2 +1,8 @@
-<h1>Battles#show</h1>
-<p>Find me in app/views/battles/show.html.erb</p>
+<h1>Battles#<%= @battle.id %></h1>
+<p class="well">
+  <b>Title:</b>
+  <%= @battle.first_player_name %>
+  <%= @battle.second_player_name %>
+  <%= @task %>
+
+</p>
