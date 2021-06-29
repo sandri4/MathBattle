@@ -1,10 +1,24 @@
 class Battle < ApplicationRecord
-  validates :first_player_name, :second_player_name, presence: true
-  validates :first_player_name, length: { minimum: 2 }
-  validates :second_player_name, length: { minimum: 2 }
+  validates :first_player_name, :second_player_name, presence: true, length: { minimum: 2 }
 
-  def math_task
-    task = rand(1..96).to_s + ['+', '-'].sample + rand(1..96).to_s + ['+', '-'].sample + rand(1..96).to_s
-    [p(task), eval(task)]
+  MIN_NUMBER = 1
+  MAX_NUMBER = 96
+  OPERATORS = %i[+ -]
+
+  class << self
+    def generate_number
+      rand(MIN_NUMBER..MAX_NUMBER)
+    end
+
+    def math_task
+      first_number = generate_number
+      second_number = generate_number
+      third_number  = generate_number
+      first_operator = OPERATORS.sample
+      second_operator = OPERATORS.sample
+      example = first_number.to_s + first_operator.to_s + second_number.to_s + second_operator.to_s + third_number.to_s
+      result = first_number.send(first_operator, second_number).send(second_operator, third_number)
+      [example, result]
+    end
   end
 end
