@@ -12,7 +12,7 @@ class BattlesController < ApplicationController
 
   def show
     @battle = Battle.find(params[:id])
-    @task, @resuls = @battle.math_task
+    generate_task
   end
 
   def new
@@ -20,6 +20,10 @@ class BattlesController < ApplicationController
   end
 
   def update; end
+
+  def generate_task
+    @task, @result = Battle.math_task
+  end
 
   private
 
