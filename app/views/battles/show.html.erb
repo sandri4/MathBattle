@@ -3,6 +3,9 @@
   <b>Title:</b>
   <%= @battle.first_player_name %>
   <%= @battle.second_player_name %>
-  <%= @task %>
-
+  <%= form_for @task do |task| %>
+    <%= @task %>
+    <%= task.text_field @answer  %>
+  <% end %>
+  <%= link_to "Some Page", url_for %></p>
 </p>
