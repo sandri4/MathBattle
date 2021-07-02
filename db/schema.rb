@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_111218) do
+ActiveRecord::Schema.define(version: 2021_06_30_114255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "battles", force: :cascade do |t|
-    t.string "first_player_name"
-    t.string "second_player_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -26,6 +24,9 @@ ActiveRecord::Schema.define(version: 2021_06_26_111218) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "battle_id"
+    t.index ["battle_id"], name: "index_players_on_battle_id"
   end
 
+  add_foreign_key "players", "battles"
 end
