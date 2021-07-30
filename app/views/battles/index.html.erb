@@ -1,5 +1,10 @@
 <h1>Battles#index</h1>
-<% @battles.each do |b| %>
-<p>Номер боя: <%= b.id %> Игрок: "<%= b.first_player_name %>" VS Игрок: "<%= b.second_player_name %>"
-  <%= link_to 'Show', battle_path(b)  %> </p>
-<% end %>
+<% @battles.each do |battle| %>
+<p>Номер боя: <%= battle.id %>
+
+  <% battle.players.each do |player|%>
+  Игрок: "<%= player.name %>"
+  <% end %>
+
+  <%= link_to 'Show', battle, :class => 'show-button' %>
+  <% end %>

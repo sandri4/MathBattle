@@ -1,11 +1,7 @@
 <h1>Battles#<%= @battle.id %></h1>
 <p class="well">
   <b>Title:</b>
-  <%= @battle.first_player_name %>
-  <%= @battle.second_player_name %>
-  <%= form_for @task do |task| %>
-    <%= @task %>
-    <%= task.text_field @answer  %>
-  <% end %>
-  <%= link_to "Some Page", url_for %></p>
+  <%= @left_player.name %>
+  <%= @right_player.name %>
+  
 </p>

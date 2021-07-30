@@ -1,6 +1,8 @@
 <h1>Battles#new</h1>
 <%= form_for @battle do |form| %>
-    <p>Имя первого игрока: <br/><%= form.text_field :first_player_name %></p>
-    <p>Имя второго игрока: <br/><%= form.text_field :second_player_name %></p>
-    <p><%= form.submit "Создать битву" %></p>
+    <%= form.fields_for :players,  @battle.players do |players_form|  %>
+        <p>Имя игрока: <br/><%= players_form.text_field :name %></p>
+    <% end %>
+
+    <%= form.submit "Создать битву", :class => '' %>
 <% end %>
