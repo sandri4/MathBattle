@@ -5,29 +5,27 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.create(battle_params)
-    @first_player_name = Player.create(name: battle_params[:first_player_name])
-    @second_player_name = Player.create(name: battle_params[:second_player_name])
-    render 'show'
+
+    redirect_to @battle
   end
 
   def show
     @battle = Battle.find(params[:id])
-    generate_task
+    @left_player = @battle.players.first
+    @right_player = @battle.players.last
   end
 
   def new
     @battle = Battle.new
+    @battle.players.build
+    @battle.players.build
   end
 
   def update; end
 
-  def generate_task
-    @task, @result = Battle.math_task
-  end
-
   private
 
   def battle_params
-    params.require(:battle).permit(:first_player_name, :second_player_name)
+    params.require(:battle).permit(players_attributes: [:name])
   end
 end
